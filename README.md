@@ -1,2 +1,4 @@
-# sh1904work
-上海滩1904
+full version pyqt5
+---------
+https://github.com/link9c/crawl-youdao.git
+---------
