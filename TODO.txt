@@ -1,0 +1,4 @@
+*/10 8-10 10-15 * * date>>/home/pro/Desktop/Homework/TODO.txt
+
+
+
