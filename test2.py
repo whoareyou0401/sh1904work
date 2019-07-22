@@ -1,6 +1,0 @@
-print('test')
-print('haha')
-print('xixi')
-print('hehe')
-print('houhou')
-print('gaga')
