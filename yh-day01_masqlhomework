@@ -1,0 +1,14 @@
+CREATE TABLE fmfriends(name VARCHAR(30),sex char(2),age int,is_used int default 0 ,id int PRIMARY key auto_increment)
+-- INSERT INTO fmfriends (name ,sex ,age )VALUES('张三','男',18)
+-- INSERT INTO fmfriends (name ,sex ,age )VALUES('王五','男',17)
+-- INSERT INTO fmfriends (name ,sex ,age )VALUES('小花','女',20)
+-- INSERT INTO fmfriends (name ,sex ,age )VALUES('凤姐加强版','女',21)
+-- INSERT INTO fmfriends (name ,sex ,age )VALUES('苍老师','女',18)
+-- SELECT * FROM fmfriends where 8<age<18
+-- SELECT * FROM fmfriends WHERE sex IN ('男') 
+-- SELECT * FROM fmfriends LIMIT 3,4
+-- UPDATE fmfriends set age=28 WHERE age>80
+-- SELECT * FROM fmfriends WHERE name LIKE '凤姐%'
+-- SELECT * FROM fmfriends WHERE name LIKE '%苍老师%'
+-- DELETE FROM fmfriends WHERE age>20
+-- SELECT name AS 姓名 FROM fmfriends
