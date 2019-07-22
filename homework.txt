@@ -1,0 +1,31 @@
+REATE TABLE fmfriends (
+-- 	name VARCHAR(20),
+-- 	sex CHAR(2),
+-- 	age INT,
+-- 	is_used VARCHAR(20)
+-- );
+
+
+-- INSERT INTO fmfriends VALUES("李妍","f",23,"no"),
+-- 				("喻冰洁","f",24,"no"),
+-- 				("黄婷婷","f",21,"yes"),
+-- 				("苍井空","f",23,"no"),
+-- 				("凤姐","m",81,"no"),
+-- 				("冯甜甜","f",18,"no"),
+-- 				("刘达","m",25,"no");
+
+
+-- SELECT * from fmfriends WHERE age BETWEEN 8 and 18;
+
+-- SELECT * from fmfriends WHERE sex in ("m");
+
+-- SELECT * from fmfriends LIMIT 3,4
+
+-- SELECT * from fmfriends where name LIKE "凤姐%"
+
+-- SELECT * FROM fmfriends WHERE name like "%苍井空%" or "苍井空%" or "%苍井空"
+
+-- UPDATE fmfriends set age = 20 WHERE age > 80
+
+-- DELETE from fmfriends WHERE age >= 20
+

@@ -1,0 +1,30 @@
+d为1的数据
+-- delete from stu where id = 1;
+
+-- 增加一个列is_delete 并设置默认值为0
+-- alter table stu add is_delete int default 0;
+
+-- 将成绩为30的数据将is_delete改为1
+-- updata stu set is_dalete = 1 where score = 30;
+
+-- 我们在查询一些数据的时候 不仅仅可以从我们真实的表查询 还可以从某个查询语句的输出去查 
+-- selcet * from (selcet * from stu where score >= 60) as tmp where tmp.sex = "m";
+
+方法二：
+	create table good_stu(
+	name varchar(20),
+	age int,
+	score float,
+	is_delete int default  0,
+	bonus int default  10
+	)
+alter table good_stu add bonus int default  10; 
+
+-- 一次解决查询插入的问题（将stu中成绩大于90的人的信息添加到good_stu表中）
+-- insert into good_stu select * from stu where score > 90;
+
+-- 指定具体的字段进行插入（将stu中成绩大于90的人的姓名和成绩添加到good_stu表中）
+-- insert into good_stu(name,score) select name,score from stu where score > 90;
+
+-- 去重
+-- select distinct name,score from good_stu;
