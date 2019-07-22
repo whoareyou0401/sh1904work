@@ -94,6 +94,11 @@ e mytest;   进入mytest数据库
 # 更新
 -- UPDATE fmfriends SET age=28 WHERE id=2
 
-SELECT name AS 姓名, gender AS 性别 FROM fmfriends;
+-- SELECT name AS 姓名, gender AS 性别 FROM fmfriends;
+
+# 删除年纪大于20的
+DELETE FROM fmfriends WHERE age>20
+
+
 
 
