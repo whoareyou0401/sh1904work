@@ -1,0 +1,104 @@
+e mytest;   进入mytest数据库
+-- CREATE TABLE stu(id int PRIMARY KEY auto_increment, NAME VARCHAR(20), score int); 创表格
+
+-- 插入5条数据
+-- INSERT INTO stu (id, name, score) VALUES(01, "Abby", 70) 
+-- INSERT INTO stu (id, name, score) VALUES(02, "Barry", 60)
+-- INSERT INTO stu (id, name, score) VALUES(03, "Cindy", 89)
+-- INSERT INTO stu (id, name, score) VALUES(04, "Debby", 55)
+-- INSERT INTO stu (id, name, score) VALUES(05, "Ella", 44)
+
+# 更新数据， 修改id=3的
+-- UPDATE stu SET score="36", name="Fein" WHERE id=03
+# 再插入两条数据
+-- INSERT INTO stu (id, name, score) VALUES(06, "Cindy", 89)
+-- INSERT INTO stu (id, name, score) VALUES(07, "Frank", 95)
+# 更新id=7的名字
+-- UPDATE stu SET name="Gloria" WHERE id=7
+
+# 删除id=7的那条
+-- DELETE FROM stu Where id=7
+# 再创一个
+-- INSERT INTO stu(id, name, score) VALUES(07, "Gloria", 95)
+
+# 加一个列 is_delete， 默认为0
+-- ALTER TABLE stu ADD is_delete TINYINT DEFAULT 0
+# 将分数小于<50的删除（逻辑删除）
+-- UPDATE stu SET is_delete=1 WHERE score<50
+
+# 选择逻辑上没被删除的
+-- SELECT * FROM stu WHERE is_delete=0
+#选择逻辑被删除的
+-- SELECT * FROM stu WHERE is_delete=1
+# 选择分数<70的
+-- SELECT * FROM stu WHERE score<70
+# 选择id 小于5的
+-- SELECT * FROM stu WHERE id<5
+# 选择id不等于3的
+-- SELECT * FROM stu WHERE id!=3
+# 选择名字以B开头的
+-- SELECT * FROM stu WHERE `name` LIKE "B%
+# 选择名字以y结尾的
+-- SELECT * FROM stu WHERE `name` LIKE "%y"
+# 选择名字带a的
+-- SELECT * FROM stu WHERE `name` LIKE "%a%"
+#选择名字有Barr且后面只剩一个字符的
+-- SELECT * FROM stu WHERE `name` LIKE "Barr_"
+# 插入一个人
+-- INSERT INTO stu (id, name, score) VALUES (08, "Harry", 55)
+# 选择成绩为55 或者 44 的
+-- SELECT * FROM stu WHERE score IN (55, 44)
+# 选择成绩 大于等于60 和小于等于80的
+-- SELECT * FROM stu WHERE score>=60 AND score<=80
+# 选择逻辑没被删的 且 分大于70的
+-- SELECT * FROM stu WHERE is_delete=0 AND score>70
+# 从上一条的结果里选分大于90的
+-- SELECT * FROM (SELECT * FROM stu WHERE is_delete=0 AND score>70) as test WHERE test.score>90
+
+# 选id和name改名显示
+-- SELECT id AS 学号, name AS 姓名 FROM stu
+# 创个表
+-- CREATE TABLE good_stu (id INT PRIMARY KEY auto_increment, name VARCHAR(20), score INT)
+# 分大于70的进入好学生表
+-- INSERT INTO good_stu(name, score) SELECT name, score FROM stu WHERE score>=70
+
+# 按姓名去重查看
+-- SELECT DISTINCT name, score FROM good_stu
+# 选没被删的， 最多三个
+-- SELECT * FROM stu WHERE is_delete=0 LIMIT 3
+# 选没被删的，跳过4个显示2个
+-- SELECT * FROM stu WHERE is_delete=0 LIMIT 2 OFFSET 3
+# 选没被删的，跳过3个显示1个
+-- SELECT * FROM stu WHERE is_delete=0 LIMIT 3, 1
+-- SELECT * FROM stu WHERE is_delete=0 LIMIT 4, 1
+
+
+-- 新建一个男女朋友表
+-- CREATE TABLE fmfriends(id INT PRIMARY KEY auto_increment, name VARCHAR(20), age TINYINT, is_used INT DEFAULT 0)
+-- INSERT INTO fmfriends (id, name, age, is_used) VALUES(1, "LiLei", 50, 1)
+-- INSERT INTO fmfriends (id, name, age, is_used) VALUES(2, "HanMeimei", 50, 1)
+# 忘了加性别 补一下
+-- ALTER TABLE fmfriends ADD gender TINYTEXT
+-- UPDATE fmfriends SET gender="Male" WHERE id=1
+-- UPDATE fmfriends SET gender="Female" WHERE id=2
+-- INSERT INTO fmfriends (id, name, age, is_used, gender) VALUES(3, "LittleZhang", 16, 1, "Male")
+-- INSERT INTO fmfriends (id, name, age, is_used, gender) VALUES(4, "MrCang", 30, 1, "Male")
+-- INSERT INTO fmfriends (id, name, age, is_used, gender) VALUES(5, "LittlWang", 11, 0, "Female")
+
+# 查询
+-- SELECT * FROM fmfriends WHERE age>=8 and age<=18;
+-- SELECT * FROM fmfriends WHERE gender="Male";
+-- SELECT * FROM fmfriends LIMIT 3, 4;
+-- SELECT * FROM fmfriends WHERE `name` LIKE "%CANG"
+
+# 更新
+-- UPDATE fmfriends SET age=28 WHERE id=2
+
+-- SELECT name AS 姓名, gender AS 性别 FROM fmfriends;
+
+# 删除年纪大于20的
+DELETE FROM fmfriends WHERE age>20
+
+
+
+
