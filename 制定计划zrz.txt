@@ -1,9 +1,0 @@
-作业：计划
-Crontab -e 编辑计划
-每个月的10号到15号的，8点到10点，每隔10分钟
-
-*/10  8-9  10-15  *  *    date>>/home/zrz3/Desktop/rq.txt
-
-/etc/init.d/cron restart 重启使编辑的文件起效
-
-
