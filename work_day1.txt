@@ -1,0 +1,17 @@
+--      CREATE TABLE `fmfriends` (
+--      	`id` int(11) NOT NULL AUTO_INCREMENT,
+--      	`name` varchar(20) DEFAULT NULL,
+--      	`sex` varchar(20) DEFAULT NULL,
+--      	`age` int(2) DEFAULT ULL,
+--      	`is_used` tinyint(4) DEFAULT NULL,
+--       PRIMARY KEY (`id`)
+--     )
+-- INSERT INTO fmfriends(name,sex,age,is_used) VALUES("lier","male",16,1),("zhangsan","male",18,1),("lisi","male",18,1),("wangwu","male",20,0),("xiaohong","femal",16,1),("xiaoli","femal",18,1);
+-- SELECT * FROM fmfriends;
+-- SELECT name AS 姓名,sex AS 性别,age as 年龄,is_used as 恋爱持续中 FROM fmfriends WHERE age BETWEEN 8 and 18;
+-- SELECT * FROM fmfriends WHERE sex IN ("male");
+-- SELECT * from fmfriends LIMIT 3,4;
+-- SELECT * FROM fmfriends WHERE name LIKE "凤姐%";
+-- SELECT * from fmfriends WHERE name LIKE "%苍老师%";
+-- UPDATE fmfriends set age=20 WHERE age>80;
+-- DELETE FROM fmfriends WHERE age>20;
