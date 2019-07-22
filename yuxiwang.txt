@@ -1,9 +1,0 @@
-in this homework
-here are my answers:
-to start with
-we should input crontab -e
-in additional
-we should input # */10 8-10 10-15 * * date>>a.txt
-what's more
-/etc/init.d/cron restart
-end   YuXiWang
