@@ -1,0 +1,41 @@
+-- 字段：姓名 性别 年龄 is_used
+-- CREATE TABLE fmfriends(
+-- id int PRIMARY KEY auto_increment,
+-- name varchar(30),
+-- age int(3),
+-- is_used tinyint(4)
+-- );
+-- ALTER TABLE fmfriends add sex VARCHAR(2) AFTER NAME;
+
+-- 插入三条以上的数据
+-- INSERT INTO fmfriends VALUES(null,'凤姐1号','fm',60,1);
+-- INSERT INTO fmfriends VALUES(null,'凤姐2号','fm',70,1),(null,'凤姐3号','fm',80,1);
+-- INSERT INTO fmfriends VALUES(null,'苍老师1号','fm',0,1),(null,'苍老师2号','fm',10,1),(null,'苍老师3号','fm',20,1);
+-- INSERT INTO fmfriends VALUES(null,'加藤鹰1号','m',30,0),(null,'加藤鹰2号','m',40,0),(null,'加藤鹰3号','m',50,0);
+-- INSERT INTO fmfriends VALUES(null,'聂小倩','fm',90,0),(null,'黑山老妖','m',100,1),(null,'白娘子','fm',110,0);
+
+-- 查询出来年纪在8到18岁的人
+-- SELECT * FROM fmfriends WHERE age BETWEEN 8 AND 18;
+
+-- 使用in查询出 男的 
+-- SELECT * FROM fmfriends where sex in ('m');
+
+-- 跳过3个查4个数据
+-- SELECT * FROM fmfriends LIMIT 3,4;
+
+-- 查询出名字是凤姐开头
+-- SELECT * FROM fmfriends WHERE name LIKE '凤姐%';
+
+-- 查询名字包含了苍老师
+-- SELECT * FROM fmfriends WHERE name LIKE '%苍老师%';
+
+-- 更新 年纪大于80岁 28的
+-- UPDATE fmfriends SET age=28 WHERE age>80;
+
+-- 查询的时候 记得字段的时候取别名
+-- 忘记取别名了，代码为as 别名
+
+-- 删除年纪大于20岁的 
+-- DELETE FROM fmfriends WHERE age>20;
+
+

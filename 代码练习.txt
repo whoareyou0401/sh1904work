@@ -1,0 +1,74 @@
+tu表中name字段添加值tom1
+-- INSERT INTO stu(`name`) VALUES('tom1');
+查询stu表所有内容
+-- SELECT * from stu;
+不规定字段，给stu表所有字段添加值(null,'bob',89,1232,'m')
+-- INSERT INTO stu VALUES(null,'bob',89,1232,'m');
+给stu表中(`name`,score,sno,sex)字段添加多条值('lucy',62,1233,'f'),('lihua',74,1234,'m')
+-- INSERT INTO stu(`name`,score,sno,sex) VALUES('lucy',62,1233,'f'),('lihua',74,1234,'m');
+将stu表中id=2的name字段的值修改为‘xiaoming’
+-- UPDATE stu SET name='xiaoming' WHERE id=2;
+将stu表中id=3的name，score字段的值分别修改为‘mary’，90
+-- UPDATE stu SET `name`='mary', score=90 WHERE id=3;
+将stu表中id=2的数据删除
+-- DELETE FROM stu WHERE id=2;
+逻辑删除，在stu表中添加字段is_delete，并设置默认值为0
+-- alter TABLE stu ADD is_delete TINYINT DEFAULT 0;
+逻辑删除score60以下的数据，将stu表中score<60d的is_delete字段值修改为1
+-- UPDATE stu SET is_delete=1 WHERE score<60;
+查看stu表中所有`name`,score,sex字段的数据
+-- SELECT `name`,score,sex from stu;
+查看stu表中id>3的`name`,score,sex字段的数据
+-- SELECT `name`,score,sex from stu WHERE id>3;
+不规定字段，给stu表所有字段添加值(NULL,'jam',77,1235,'m',NULL)
+-- INSERT INTO stu VALUES(NULL,'jam',77,1235,'m',NULL);
+查看stu表中name字段以to开头的数据
+-- SELECT * FROM stu WHERE `name` LIKE 'to%';
+查看stu表中name字段以y结尾的数据
+-- SELECT * FROM stu WHERE `name` LIKE '%y';
+查看stu表中name字段包含o的数据
+-- SELECT * FROM stu WHERE `name` LIKE '%o%';
+查看stu表中name字段以to开头并且后面只跟一位的数据
+-- SELECT * FROM stu WHERE `name` LIKE 'to_;
+查看stu表中score字段62-77的数据，为闭区间
+-- SELECT * FROM stu WHERE score BETWEEN 62 AND 77;
+查看stu表中score字段在(63,62,59)当中的数据
+-- SELECT * from stu WHERE score in (63,62,59);
+查看stu表中score>60并且<80的数据
+-- SELECT * FROM stu WHERE score>60 AND score<80;
+查看stu表中未被删除，并且score>70的数据
+-- SELECT * from stu WHERE is_delete=0 AND score>70;
+将stu表中未被删除的数据作为子查询，取别名tmp，并查找其中score>70的数据
+-- SELECT * from (SELECT * FROM stu WHERE is_delete=0) as tmp WHERE tmp.score>70;
+查看stu表中(name，sex)字段的数据，并为字段名分别取别名(姓名,性别)
+-- SELECT name AS 姓名,sex AS 性别 FROM stu;
+查看stu表的建表语句
+-- SHOW CREATE TABLE stu;
+创建一个与stu表结构一致的good_stu表
+-- CREATE TABLE `good_stu` (
+--   `id` int(11) NOT NULL AUTO_INCREMENT,
+--   `name` varchar(20) DEFAULT NULL,
+--   `score` int(11) DEFAULT NULL,
+--   `sno` int(11) DEFAULT NULL,
+--   `sex` varchar(2) DEFAULT NULL,
+--   `is_delete` tinyint(4) DEFAULT '0',
+--   PRIMARY KEY (`id`)
+-- ) ;
+查询stu表中score>90的数据，并插入good_stu表中
+-- INSERT INTO good_stu (SELECT * FROM stu WHERE score>=90) ;
+查询stu表中score>90的(name,score)字段的数据，并插入good_stu表中
+-- INSERT INTO good_stu(name,score) (SELECT name,score FROM stu WHERE score>=90) ;
+查看good_stu表中(name,score)字段的数据，并去重
+-- SELECT DISTINCT name,score FROM good_stu;
+where应在limit前面
+-- SELECT * FROM stu LIMIT 2 WHERE is_delete=0;  ==> 报错
+查看stu表中数据隔两条，显示两条
+-- SELECT * FROM stu WHERE is_delete=0 LIMIT 2 OFFSET 2;
+查看stu表中数据隔两条，显示一条
+-- SELECT * FROM stu LIMIT 2,1;
+查看stu表中数据隔两条，显示两条
+-- SELECT * FROM stu LIMIT 2,2;
+
+
+
+
