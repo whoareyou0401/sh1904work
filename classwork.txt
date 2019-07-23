@@ -1,0 +1,85 @@
+d为1的数据
+-- delete from stu where id = 1;
+
+-- 增加一个列is_delete 并设置默认值为0
+-- alter table stu add is_delete int default 0;
+
+-- 将成绩为30的数据将is_delete改为1
+-- updata stu set is_dalete = 1 where score = 30;
+
+
+-- id大于三的记录 
+-- select * from stu where id > 3;
+-- id不等于4的学生的姓名和成绩
+-- select name,score from stu where id <> 4;
+
+-- 想查以to开头的数据
+-- selcet * from stu where name like "to%";
+
+-- 查询名字以2结尾的数据
+-- selcet * from stu where name like "%2";
+
+-- 查询名字包含ao的数据
+-- selcet * from stu where name like "%ao%" or "ao%" or "%ao";
+
+-- 查询名字是to开头 但是后面只允许有一个字符
+-- selcet * from stu where name like "to_";
+
+-- 查询成绩大于等于62并且小于等于78 
+-- selcet * from stu where score >= 62 and score <= 78;
+-- selcet * from stu where score between 62 and 78;
+
+-- in 某个字段的值在我们括号里面出现了 就查出来  (使用in和and操作)
+-- selcet * from stu where score in (90,59);
+-- selcet * from stu where score = 90 and name = "tom";
+
+-- 查询没被删除的数据 分数大于70的数据
+-- selcet * from stu where is_dalete = 0 and score > 70;
+
+-- 我们在查询一些数据的时候 不仅仅可以从我们真实的表查询 还可以从某个查询语句的输出去查 
+-- selcet * from (selcet * from stu where score >= 60) as tmp where tmp.sex = "m";
+
+-- 给查询的字段取别名
+-- selcet name as "姓名",score "成绩" from stu where score >= 60
+
+-- 需求：分数大于90分 给钱10块，校长说， 把获奖学生 放入到三好学生表
+-- 1.首先要有一张三好学生表，同时添加一个字段bonus 默认值为10
+-- 2.筛选出分数大于90的学生
+-- 3.将筛选出来的数据加入到三好学生表中
+-- 
+
+-- 1.先查询之前的stu表，复制其结构
+-- show create table stu;
+-- 复制其结构
+
+粘贴 并修改名字
+方法二：
+	create table good_stu(
+	name varchar(20),
+	age int,
+	score float,
+	is_delete int default  0,
+	bonus int default  10
+	)
+alter table good_stu add bonus int default  10;  
+
+
+
+
+-- 一次解决查询插入的问题（将stu中成绩大于90的人的信息添加到good_stu表中）
+-- insert into good_stu select * from stu where score > 90;
+
+-- 指定具体的字段进行插入（将stu中成绩大于90的人的姓名和成绩添加到good_stu表中）
+-- insert into good_stu(name,score) select name,score from stu where score > 90;
+
+-- 去重
+-- select distinct name,score from good_stu; 
+
+-- 跨过N+1个 最多拿M个（limit） OFFSET有位移的意思，就是指略过下标为0,1，...,N的数据，拿M个
+-- select * from stu where name = "tom" limit M offset N;
+
+-- LIMIT 跨过N个，取M个
+-- select * from stu limit M,N;
+
+-- 拿出前两条数据
+-- select * from stu limit 2;
