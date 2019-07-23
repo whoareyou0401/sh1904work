@@ -1,0 +1,61 @@
+REATE table shopping2(
+-- id INT PRIMARY KEY auto_increment,
+-- s_name VARCHAR(20),
+-- s_id int,
+-- CONSTRAINT wj_1 FOREIGN KEY(s_id) REFERENCES shopping1(id)
+-- )
+-- 
+-- CREATE table shopping3(
+-- id INT PRIMARY KEY auto_increment,
+-- t_name VARCHAR(20),
+-- t_id int,
+-- CONSTRAINT wj_2 FOREIGN KEY(t_id) REFERENCES shopping2(id)
+-- )
+
+-- INSERT INTO shopping1(name) VALUES("酒类"),("调味类") 
+-- INSERT INTO shopping2(s_name,s_id) VALUES("红酒",1),("白酒",1),("酱油",2),("葡萄酒",1),("盐",2),("白醋",2),("啤酒",1),("黄酒",1),("米酒",1),("香油",2)
+-- INSERT INTO shopping3(t_name,t_id) VALUES("82拉菲",1),("拉图",1),("二锅头",2),("牛栏山",2),("海天",3),("张裕",4),("食盐",5),("醋精",6),("哈啤",7),("同福",9),("大豆香油",10),("糯米黄酒",8)
+
+-- ALTER TABLE shopping3 add des VARCHAR(50)
+
+-- ALTER TABLE shopping3 add pirce int
+
+-- 一
+-- SELECT s1.name,s2.s_name,s3.t_name,s3.des from shopping1 as s1 
+-- LEFT JOIN shopping2 as s2 ON s1.id = s2.s_id
+-- LEFT JOIN shopping3 as s3 ON s2.id = s3.t_id
+-- WHERE s3.des = "大补"
+
+-- 二
+-- SELECT s2.s_name, AVG(s3.pirce) from shopping2 as s2 
+-- LEFT JOIN shopping3 as s3 on s2.id = s3.t_id
+-- WHERE s2.s_id = 1
+-- GROUP BY s2.s_name
+
+-- 三
+-- SELECT s2.s_name, AVG(s3.pirce) ,SUM(s3.pirce) from shopping2 as s2 
+-- LEFT JOIN shopping3 as s3 on s2.id = s3.t_id
+-- WHERE s2.s_id = 1
+-- GROUP BY s2.s_name
+-- HAVING SUM(s3.pirce) > 150
+
+-- 四
+-- SELECT s3.t_name, CASE 
+-- WHEN pirce < 20 then "便宜"
+-- WHEN pirce >= 20 and pirce <= 40 then "还行"
+-- ELSE "买不起" END
+-- from shopping3 as s3
+
+-- 五
+-- ALTER table shopping1 add UNIQUE(name)
+
+-- 六
+-- SELECT * from shopping3 s3 
+-- ORDER BY s3.pirce
+
+-- 七
+-- SELECT s1.name,sum(s3.pirce) from shopping1 as s1 
+-- LEFT JOIN shopping2 as s2  ON s1.id = s2.s_id 
+-- LEFT JOIN shopping3 as s3 on s2.s_id = s3.t_id
+-- GROUP BY s1.name 
+-- ORDER BY sum(s3.pirce) DESC
