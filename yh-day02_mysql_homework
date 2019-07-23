@@ -1,0 +1,11 @@
+REATE TABLE commodity_1 (id int PRIMARY key auto_increment,type varchar(30) UNIQUE not null)
+-- CREATE TABLE commodity_2  (id int PRIMARY key auto_increment,type varchar(30) UNIQUE not null,co2_id int,constraint c2 foreign key(co2_id) references commodity_1(id) ) 
+-- CREATE TABLE commodity_3 (id int PRIMARY key auto_increment,type varchar(30) UNIQUE not null,price int ,notes varchar(50),co3_id int,constraint c3 foreign key(co3_id) references commodity_2(id) ) 
+-- select * FROM commodity_1 as co1 left  JOIN commodity_2 as co2 on co1.id=co2.co2_id left JOIN commodity_3 as co3 on co2.id=co3.co3_id where co3.notes like "%大补%"
+ -- select  co2.type , AVG(price) FROM commodity_3 as co3 LEFT JOIN commodity_2 as co2 on co3.co3_id=co2.id GROUP BY co2.type
+--  select  co2.type , AVG(price) FROM commodity_3 as co3 LEFT JOIN commodity_2 as co2 on co3.co3_id=co2.id GROUP BY co2.type HAVING SUM(price)>200
+-- SELECT type,price ,CASE WHEN price<=20 THEN "便宜" WHEN 20<price and price<=40 THEN "还行" when price>40 THEN "买不起" END as "贵吗" from commodity_3
+-- SELECT * from commodity_3 ORDER BY price 
+-- select co1.type,sum(co3.price)as "总价" FROM commodity_1 as co1 left  JOIN commodity_2 as co2 on co1.id=co2.co2_id left JOIN commodity_3 as co3 on co2.id=co3.co3_id GROUP BY co1.type order by sum(co3.price) desc 
+
+
