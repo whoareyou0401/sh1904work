@@ -1,0 +1,80 @@
+te TABLE department(id int PRIMARY KEY auto_increment, name VARCHAR(30) NOT NULL UNIQUE)
+-- CREATE TABLE staff(id int PRIMARY KEY auto_increment, s_name VARCHAR(30), d_id int NOT NULL, CONSTRAINT mark_id FOREIGN KEY(d_id) REFERENCES department(id)) 
+-- INSERT INTO department(name) value("Python")
+-- INSERT INTO department(name) value("H5")
+-- INSERT INTO staff(s_name, d_id) VALUES("tom", 1)
+-- INSERT INTO staff(s_name, d_id) VALUES("小明", 1)
+-- INSERT INTO staff(s_name, d_id) VALUES("Amy", 2)
+-- SELECT * FROM staff AS s, department AS d WHERE s.d_id=d.id;
+-- SELECT s.s_name, d.name FROM staff AS s, department AS d WHERE s.d_id=d.id;
+-- SELECT * FROM staff AS s, department AS d;
+
+-- SELECT * FROM staff AS s LEFT JOIN department AS d ON s.d_id=d.id
+-- SELECT s.s_name, d.name FROM staff AS s LEFT JOIN department AS d ON s.d_id=d.id
+
+-- INSERT INTO department(name) VALUES("UI")
+-- INSERT INTO staff(id, d_id) VALUES(4, 2) 
+
+-- SELECT s.s_name, d.name FROM staff AS s RIGHT JOIN department AS d ON s.d_id=d.id
+-- ALTER TABLE staff CHANGE d_id d_id INT
+-- INSERT INTO staff(s_name) VALUES("Barry")
+
+-- SELECT s.s_name, d.name FROM staff AS s RIGHT JOIN department AS d ON s.d_id=d.id
+-- SELECT s.s_name, d.name FROM staff AS s LEFT JOIN department AS d ON s.d_id=d.id
+-- SELECT * FROM staff AS s INNER JOIN department AS d ON s.d_id=d.id
+
+-- SELECT * FROM staff AS s LEFT JOIN department AS d ON s.d_id=d.id UNION SELECT * FROM staff AS s RIGHT JOIN department AS d ON s.d_id=d.id
+
+
+-- CREATE TABLE IF NOT EXISTS province(id int PRIMARY KEY auto_increment, p_name VARCHAR(20))
+-- CREATE TABLE IF NOT EXISTS city(id int PRIMARY KEY auto_increment, ci_name VARCHAR(20), ci_id int, CONSTRAINT mark1 FOREIGN KEY(ci_id) REFERENCES province(id))
+-- CREATE TABLE IF NOT EXISTS county(id int PRIMARY KEY auto_increment, co_name VARCHAR(20), co_id int, CONSTRAINT mark2 FOREIGN KEY(co_id) REFERENCES city(id))
+
+-- INSERT INTO province(p_name) VALUES("浙江")
+-- INSERT INTO province(p_name) VALUES("江苏")
+
+-- INSERT INTO city(ci_name) VALUES("苏州")
+-- INSERT INTO county(co_name) VALUES("宁波下辖某县3")
+
+-- ???
+-- SELECT * FROM province as p LEFT JOIN city as ci ON p.id=ci.ci_id LEFT JOIN county as co ON co.co_id=ci.ci_id WHERE p.id=1
+
+
+
+-- 商品分类练习
+
+-- CREATE TABLE if not exists commodity(id int PRIMARY KEY auto_increment, name VARCHAR(20))
+-- INSERT INTO commodity(id, name) VALUES(2, "调味品")
+ 
+
+-- CREATE TABLE IF NOT EXISTS second_class(id int PRIMARY KEY auto_increment, item VARCHAR(25), scd_id int, CONSTRAINT mark3 FOREIGN KEY(scd_id) REFERENCES commodity(id))
+
+-- CREATE TABLE IF NOT EXISTS second_class(id int PRIMARY KEY auto_increment, name VARCHAR(25))
+
+-- INSERT INTO second_class(id, item, scd_id) VALUES(10, "香油", 2)
+-- DELETE FROM second_class WHERE id=7
+-- UPDATE second_class SET scd_id=1 WHERE id=6
+
+
+-- CREATE TABLE IF NOT EXISTS attribute(id int PRIMARY KEY auto_increment, description VARCHAR(100), price int, a_id int, CONSTRAINT mark4 FOREIGN KEY(a_id) REFERENCES second_class(id)) 
+-- INSERT INTO attribute(id, description, price, a_id) VALUES(9, "大补", 88, 5)
+-- INSERT INTO attribute(id, price, a_id) VALUES(15, 55, 8)
+-- INSERT INTO attribute(id, description, a_id) VALUES(16, "白色", 8)
+-- DELETE FROM second_class WHERE id=10
+
+-- ALTER TABLE attribute ADD brand varchar(30)
+-- ????
+-- sc.item, AVG(att.price) 
+
+-- SELECT * FROM commodity as com LEFT JOIN second_class as sc ON com.id=sc.scd_id LEFT JOIN attribute as att ON att.a_id=sc.id WHERE description LIKE "大补"
+-- SELECT sc.item, AVG(att.price) FROM commodity as com LEFT JOIN second_class as sc ON com.id=sc.scd_id LEFT JOIN attribute as att ON att.a_id=sc.id GROUP BY sc.item
+-- SELECT sc.item, SUM(att.price) FROM commodity as com LEFT JOIN second_class as sc ON com.id=sc.scd_id LEFT JOIN attribute as att ON att.a_id=sc.id GROUP BY sc.item HAVING SUM(att.price)>200
+-- SELECT sc.item, SUM(att.price) FROM commodity as com LEFT JOIN second_class as sc ON com.id=sc.scd_id LEFT JOIN attribute as att ON att.a_id=sc.id GROUP BY sc.item HAVING SUM(att.price)>200
+
+-- SELECT CASE WHEN price<20 THEN "便宜" WHEN price>=20 and price<40 THEN "还行" WHEN price>40 THEN "要不起" END FROM attribute 
+-- SELECT * FROM attribute ORDER BY price DESC
+
+-- GROUP BY sc.scd_id 
+SELECT att.brand, att.price FROM commodity as com LEFT JOIN second_class as sc ON com.id=sc.scd_id LEFT JOIN attribute as att ON att.a_id=sc.id GROUP BY sc.scd_id ORDER BY att.price DESC
+
+SELECT sc.scd_id, SUM(att.price) FROM commodity as com LEFT JOIN second_class as sc ON com.id=sc.scd_id LEFT JOIN attribute as att on att.a_id=sc.scd_id group by sc.scd_id order by sum(att.price) desc;
